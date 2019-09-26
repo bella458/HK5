@@ -2,8 +2,6 @@
 
 """
 
-import unittest
-
     
 greeting = 'Hello, this program will determine classify triangles based on the 3 side values.'
 
