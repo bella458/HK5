@@ -3,7 +3,6 @@
 """
 
 import unittest
-#from __builtin__ import False
 
     
 greeting = 'Hello, this program will determine classify triangles based on the 3 side values.'
@@ -16,12 +15,13 @@ def classify_triangle(a, b, c):
 	triangleType = ''
 	
 	#check inputs are integers
-	if not(isinstance(a,int) or isinstance(b,int) or isinstance(c,int)):
+	if not(isinstance(a,int)) or not(isinstance(b,int)) or not(isinstance(c,int)):
 		triangleType = 'This is not a valid triangle'
-        
+	
 	# input must be > 0 and < 200
-	if a <= 0 or b <= 0 or c <= 0:
+	elif a <= 0 or b <= 0 or c <= 0:
 		triangleType = 'This is not a valid triangle'
+	
 	# input must be > 0 and < 200
 	elif a > 200 or b > 200 or c > 200:
 		triangleType = 'This is not a valid triangle'
@@ -53,37 +53,17 @@ try:
 	classify_triangle(-5, 2, 5) #not valid triangle
 	classify_triangle(3, 4, 5) #scalene and right
 	classify_triangle(5, 4, 3) #scalene and right
-	classify_triangle(4, 3, 5) #scalene and right
+	classify_triangle(4, 5, 3) #scalene and right
 	classify_triangle(4, 2, 3) #scalene
 	classify_triangle(2, 2, 2) #equilateral
 	classify_triangle(5, 12, 13) #scalene and right
 	classify_triangle(5, 5, 5) #equilateral
 	classify_triangle(-5, -5, -5) #not valid triangle
 	classify_triangle(0, 0, 0) #not valid triangle
-	        
+	classify_triangle(2.1, 2, 3) #not valid triangle
+	classify_triangle(300, 300, 300) #not valid triangle
+	classify_triangle(squirrel, 2, 3) #not valid triangle    
+	   
 except:
 	print ('Invalid values. Please run program again.')
     
-class TestTriangles(unittest.TestCase):
-	def testEquilateral(self):
-		self.assertEqual(classify_triangle(6, 6, 6), 'This is an equilateral triangle')
-		self.assertEqual(classify_triangle(8, 8, 8), 'This is an equilateral triangle')
-    
-	def testIsoceles(self): 
-		self.assertEqual(classify_triangle(2, 2, 3),'This is an isosceles triangle')
-		self.assertEqual(classify_triangle(2, 3, 2),'This is an isosceles triangle')
-		self.assertEqual(classify_triangle(3, 2, 2),'This is an isosceles triangle')
-		
-	def testScalene(self):
-		self.assertEqual(classify_triangle(7, 4, 10), 'This is a scalene triangle')
-		self.assertEqual(classify_triangle(10, 7, 4), 'This is a scalene triangle')
-    
-	def testScaleneRight(self): 
-		self.assertEqual(classify_triangle(3, 4, 5), 'This is a scalene triangle and right triangle')
-		self.assertEqual(classify_triangle(5, 4, 3), 'This is a scalene triangle and right triangle')
-		self.assertEqual(classify_triangle(5, 3, 4), 'This is a scalene triangle and right triangle')
-				
-	def testWrongInput(self):
-		self.assertEqual(classify_triangle(-3, 8, 8), 'This is an invalid triangle')
-		self.assertEqual(classify_triangle(4, 2, 2), 'This is not a triangle')
-		
