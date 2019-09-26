@@ -2,30 +2,35 @@
 
 """
 
-    
-greeting = 'Hello, this program will determine classify triangles based on the 3 side values.'
 
-print(greeting)
+GREETING = 'Hello, this program will determine classify triangles based on the 3 side values.'
+
+print(GREETING)
 
 triangleType = ''
 
+# main classifying triangle function
 def classify_triangle(a, b, c):
 	triangleType = ''
-	
+
 	#check inputs are integers
-	if not(isinstance(a,int)) or not(isinstance(b,int)) or not(isinstance(c,int)):
+	if not isinstance(a, int) or not isinstance(b, int) or not isinstance(c, int):
 		triangleType = 'This is not a valid triangle'
-	
+
 	# input must be > 0 and < 200
 	elif a <= 0 or b <= 0 or c <= 0:
 		triangleType = 'This is not a valid triangle'
-	
+
 	# input must be > 0 and < 200
 	elif a > 200 or b > 200 or c > 200:
 		triangleType = 'This is not a valid triangle'
 	elif a == b  and b == c:
 		triangleType = 'This is an equilateral triangle'
-	elif (a == b and b != c) or (a == c and b != c) or (b == c and b != a):
+	elif (a == b and b != c):
+		triangleType = 'This is an isosceles triangle'
+	elif (a == c and b != c):
+		triangleType = 'This is an isosceles triangle'
+	elif (b == c and b != a):
 		triangleType = 'This is an isosceles triangle'
 	elif (a != b) and (a != c) and (b != c):
 		triangleType = 'This is a scalene triangle'
@@ -40,8 +45,8 @@ def classify_triangle(a, b, c):
 	#the sum of any two sides must be strictly less than the third side
 	if (a >= (b + c)) or (b >= (a + c)) or (c >= (a + b)):
 		triangleType = 'This is not a valid triangle'
-	
-	print (triangleType)
+
+	print(triangleType)
 	return triangleType
 
 try:
@@ -61,7 +66,7 @@ try:
 	classify_triangle(2.1, 2, 3) #not valid triangle
 	classify_triangle(300, 300, 300) #not valid triangle
 	classify_triangle(squirrel, 2, 3) #not valid triangle    
-	   
-except:
-	print ('Invalid values. Please run program again.')
-    
+
+except(RuntimeError, TypeError, NameError, ValueError):
+	print('Invalid values. Please run program again.')
+	
